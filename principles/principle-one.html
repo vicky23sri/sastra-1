@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="/dist/output.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>Principle One</title>
+</head>
+<body class="bg-[#f3e7d7] min-h-screen">
+    <!-- Header with controls - sticky -->
+    <div class="sticky top-0 z-50 bg-[#f3e7d7] pt-4 px-4">
+        <div class="container mx-auto bg-white rounded-xl shadow-lg p-6" data-aos="fade-down">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-[#b55206]">DISCUSS SRILA PRABHUPADA’S BOOKS WITH FAMILY MEMBERS AND FRIENDS</h1>
+                    <p class="text-[#4c1204] mt-2">Discussing Srila Prabhupada's Books</p>
+                </div>
+                <div class="flex gap-4">
+                    <button id="playButton" class="bg-[#b55206] text-[#d4b483] px-8 py-3 rounded-full hover:bg-[#4c1204] transition-all duration-300 flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <i class="fas fa-play text-lg"></i>
+                        <span class="font-medium">Play</span>
+                    </button>
+                    <button id="downloadButton" class="bg-[#b55206] text-[#d4b483] px-8 py-3 rounded-full hover:bg-[#4c1204] transition-all duration-300 flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <i class="fas fa-download text-lg"></i>
+                        <span class="font-medium">Download</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Main content -->
+        <div id="content" class="space-y-8">
+            <!-- Introduction Section -->
+            <div class="bg-white rounded-xl shadow-lg p-8 transform hover:shadow-xl transition-all duration-300" 
+                 data-aos="fade-up" 
+                 data-aos-duration="1000">
+                <h2 class="text-2xl font-bold text-[#b55206] mb-6 border-b-2 border-[#f3e7d7] pb-4">
+                    DISCUSS SRILA PRABHUPADA'S BOOKS WITH FAMILY MEMBERS AND FRIENDS
+                </h2>
+                <div class="prose max-w-none text-gray-700 leading-relaxed">
+                    <blockquote class="border-l-4 border-[#b55206] pl-4 italic bg-[#f3e7d7]/30 p-4 rounded">
+                        "So you European, American students, you take full advantage of this Vedic culture..."
+                    </blockquote>
+                    <blockquote class="border-l-4 border-[#b55206] pl-4 italic">
+                        "Generally, people cannot understand..."
+                    </blockquote>
+                </div>
+            </div>
+
+            <!-- Why Important Section -->
+            <div class="bg-white rounded-xl shadow-lg p-8" 
+                 data-aos="fade-up" 
+                 data-aos-duration="1000"
+                 data-aos-delay="100">
+                <div class="bg-[#f3e7d7] p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#4c1204] mb-4">Why this Principle is important:</h3>
+                    <p class="text-gray-700">
+                        One might ask why we must discuss Srila Prabhupada's books...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quotes Section -->
+            <div class=" grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-8" 
+                     data-aos="fade-right" 
+                     data-aos-duration="1000"
+                     data-aos-delay="200">
+                    <h3 class="text-xl font-bold text-[#b55206] mb-4">Important Quotes</h3>
+                    <div class="space-y-4">
+                        <blockquote class="border-l-4 border-[#b55206] pl-4 italic">
+                            "Generally, people cannot understand..."
+                        </blockquote>
+                        <blockquote class="border-l-4 border-[#b55206] pl-4 italic">
+                            "So you European, American students, you take full advantage of this Vedic culture..."
+                        </blockquote>
+                        <blockquote class="border-l-4 border-[#b55206] pl-4 italic">
+                            "Be engaged always in reading Srimad-Bhagavatam, discussing amongst yourself..."
+                        </blockquote>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8" 
+                     data-aos="fade-left" 
+                     data-aos-duration="1000"
+                     data-aos-delay="300">
+                    <h3 class="text-xl font-bold text-[#b55206] mb-4">Key Points</h3>
+                    <ul class="space-y-4 list-disc list-inside text-gray-700">
+                        <li>Unless we hear from a "self-realised", "liberated," "unalloyed" devotee...</li>
+                        <li>Discussion among devotees is essential for spiritual advancement.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS with enhanced settings
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false,
+            mirror: true,
+            anchorPlacement: 'center-bottom',
+            offset: 100,
+            delay: 0,
+            disable: false,
+            startEvent: 'DOMContentLoaded',
+            useClassNames: true,
+            initClassName: 'aos-init',
+            animatedClassName: 'aos-animate'
+        });
+
+        // Refresh AOS on scroll and resize
+        document.addEventListener('scroll', function() {
+            AOS.refresh();
+        });
+        window.addEventListener('resize', function() {
+            AOS.refresh();
+        });
+
+        // Enhanced text-to-speech with highlighting
+        let speechSynthesis = window.speechSynthesis;
+        let utterance = null;
+        let isPlaying = false;
+
+        document.getElementById('playButton').addEventListener('click', function() {
+    if (!isPlaying) {
+        // Gather all text content from the relevant sections
+        const contentSections = document.querySelectorAll('#content h2, #content h3, #content p, #content blockquote, #content li');
+        const content = Array.from(contentSections).map(section => section.textContent).join(' ');
+
+        utterance = new SpeechSynthesisUtterance(content);
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        
+        this.innerHTML = '<i class="fas fa-pause text-lg"></i><span class="font-medium">Pause</span>';
+        isPlaying = true;
+
+        // Enhanced word highlighting
+        const words = content.split(' ');
+        let currentIndex = 0;
+
+        utterance.onboundary = function(event) {
+            if (event.name === 'word') {
+                // Remove previous highlights
+                document.querySelectorAll('.highlight').forEach(el => {
+                    el.classList.remove('bg-[#b55206]', 'text-white', 'highlight', 'px-1', 'rounded');
+                });
+
+                // Add new highlight with transition
+                if (currentIndex < words.length) {
+                    const word = words[currentIndex];
+                    const textNodes = document.evaluate(
+                        "//text()[contains(., '" + word + "')]",
+                        document.body,
+                        null,
+                        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                        null
+                    );
+
+                    for (let i = 0; i < textNodes.snapshotLength; i++) {
+                        const node = textNodes.snapshotItem(i);
+                        const span = document.createElement('span');
+                        span.textContent = word;
+                        span.classList.add('bg-[#b55206]', 'text-white', 'highlight', 'px-1', 'rounded', 
+                                        'transition-all', 'duration-300', 'transform', 'scale-110');
+                        node.parentNode.replaceChild(span, node);
+                    }
+                    currentIndex++;
+                }
+            }
+        };
+
+        utterance.onend = function() {
+            isPlaying = false;
+            document.getElementById('playButton').innerHTML = 
+                '<i class="fas fa-play text-lg"></i><span class="font-medium">Play</span>';
+            document.querySelectorAll('.highlight').forEach(el => {
+                el.classList.remove(
+                    'bg-[#b55206]', 
+                    'text-white', 
+                    'highlight', 
+                    'px-1', 
+                    'rounded',
+                    'transition-all', 
+                    'duration-300', 
+                    'transform', 
+                    'scale-110'
+                );
+            });
+        };
+
+        speechSynthesis.speak(utterance);
+    } else {
+        speechSynthesis.cancel();
+        this.innerHTML = '<i class="fas fa-play text-lg"></i><span class="font-medium">Play</span>';
+        isPlaying = false;
+    }
+});
+    </script>
+</body>
+</html>
