@@ -16,7 +16,8 @@ module.exports = {
             'buttons': "#2c0e03",
         },
         fontFamily: {
-            'sans': ['Inter', 'system-ui', 'sans-serif']
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'jost': ['Jost', 'serif']
         },
         spacing: {
             '128': '32rem',
