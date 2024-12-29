@@ -11,233 +11,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Syne:wght@400..800&family=Yellowtail&display=swap" rel="stylesheet">
-    <style>
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        body {
-            font-family: 'Jost', serif;
-        }
-
-        .menu-open {
-            overflow: hidden;
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            clip-path: circle(0px at calc(100% - 45px) 45px);
-            transition: clip-path 0.8s cubic-bezier(0.85, 0, 0.15, 1);
-            z-index: 40;
-        }
-
-        .nav-menu.active {
-            clip-path: circle(150% at calc(100% - 45px) 45px);
-            transition: clip-path 1s cubic-bezier(0.85, 0, 0.15, 1);
-        }
-
-        /* Ensure the navbar is always on top */
-        .navbar-visible {
-            background-color: black;
-        }
-
-        /* Style for the menu items to fade in */
-        .menu-item {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            transition-delay: 0.2s;
-        }
-
-        .nav-menu.active .menu-item {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Add different delays for each menu item */
-        .nav-menu.active .menu-item:nth-child(1) { transition-delay: 0.4s; }
-        .nav-menu.active .menu-item:nth-child(2) { transition-delay: 0.5s; }
-        .nav-menu.active .menu-item:nth-child(3) { transition-delay: 0.6s; }
-        .nav-menu.active .menu-item:nth-child(4) { transition-delay: 0.7s; }
-        .nav-menu.active .menu-item:nth-child(5) { transition-delay: 0.8s; }
-        .nav-menu.active .menu-item:nth-child(6) { transition-delay: 0.9s; }
-
-        .fixed {
-            position: fixed;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
-        }
-
-        .hero-overlay {
-            background: linear-gradient(
-                135deg,
-                rgba(0, 0, 0, 0.8) 0%,
-                rgba(0, 0, 0, 0.6) 50%,
-                rgba(0, 0, 0, 0.4) 100%
-            );
-        }
-
-        /* training */
-        .video-modal {
-            display: none;
-            animation: modalFade 0.3s ease-out;
-        }
-        
-        .video-modal.active {
-            display: flex;
-        }
-        
-        .card-overlay {
-            background: rgba(30, 41, 59, 0.7);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-        
-        .hover-effect:hover .card-overlay {
-            opacity: 1;
-        }
-        
-        .hover-effect:hover img {
-            transform: scale(1.05);
-        }
-
-        .hover-gradient:hover .card-overlay {
-            opacity: 1;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
-        }
-        
-        @keyframes modalFade {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .play-btn {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .play-btn:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 0 30px rgba(255,255,255,0.3);
-        }
-        
-        .category-badge {
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-        }
-
-        /* principles */
-        .card-hover-effect {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover-effect:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-        .number-circle {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover-effect:hover .number-circle {
-            transform: scale(1.1) rotate(5deg);
-        }
-        .card-hover-effect:hover .title-text {
-            color: #1d4ed8;
-        }
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .page-container {
-            position: relative;
-            min-height: 100vh;
-        }
-
-        .principle-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color, #f3e7d7);
-            transform: translateX(100%);
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-            z-index: 50;
-        }
-
-        .principle-page.active {
-            transform: translateX(0);
-        }
-
-        .page-content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transition-delay: 0.3s;
-        }
-
-        .principle-page.active .page-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .back-btn {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 60;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.3s ease;
-        }
-
-        .principle-page.active .back-btn {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.6s;
-        }
-
-        .view-more-btn {
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover-effect:hover .view-more-btn {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .arrow-icon {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .view-more-btn:hover .arrow-icon {
-            transform: translateX(8px);
-        }
-    </style>
+    <link rel="stylesheet" href="/src/css/style.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="fixed w-full z-50 transition-all duration-300 overflow-hidden" id="navbar">
-        <div class="container flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="container flex flex-wrap items-center justify-between mx-auto pt-8 pb-6">
             <a href="#" class="flex items-center space-x-3 z-50" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
-                <img src="/src/Images/logo.png" class="h-20" alt="Logo">
+                <img src="/src/Images/logo-1/white-logo.svg" alt="Logo">
             </a>
             
             <!-- Hamburger Button -->
@@ -250,19 +31,19 @@
                 <div class="container mx-auto px-4 h-full flex items-center">
                     <ul class="flex flex-col items-center space-y-12 w-full">
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="100">
-                            <a href="#" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Principles</a>
+                            <a href="#principles" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Principles</a>
                         </li>
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="200">
-                            <a href="#" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Podcast</a>
+                            <a href="#podcast" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Podcast</a>
                         </li>
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="300">
                             <a href="#" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Resources</a>
                         </li>
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="400">
-                            <a href="#" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Training</a>
+                            <a href="#training" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Training</a>
                         </li>
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="500">
-                            <a href="#" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Course</a>
+                            <a href="#spiritual-courses" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Course</a>
                         </li>
                     </ul>
                 </div>
@@ -272,19 +53,19 @@
             <div class="hidden xl:block" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
                 <ul class="font-medium flex items-center space-x-8">
                     <li data-aos="fade-down" data-aos-delay="100">
-                        <a href="#" class="text-white hover:text-orange-500 text-2xl transition-colors">Principles</a>
+                        <a href="#principles" class="text-white hover:text-orange-500 text-2xl transition-colors">Principles</a>
                     </li>
                     <li data-aos="fade-down" data-aos-delay="200">
-                        <a href="#" class="text-white hover:text-orange-500 transition-colors text-2xl">Podcast</a>
+                        <a href="#podcast" class="text-white hover:text-orange-500 transition-colors text-2xl">Podcast</a>
                     </li>
                     <li data-aos="fade-down" data-aos-delay="300">
                         <a href="#" class="text-white hover:text-orange-500 transition-colors text-2xl">Resources</a>
                     </li>
                     <li data-aos="fade-down" data-aos-delay="400">
-                        <a href="#" class="text-white hover:text-orange-500 transition-colors text-2xl">Training</a>
+                        <a href="#training" class="text-white hover:text-orange-500 transition-colors text-2xl">Training</a>
                     </li>
                     <li data-aos="fade-down" data-aos-delay="500">
-                        <a href="#" class="text-white hover:text-orange-500 transition-colors text-2xl">Course</a>
+                        <a href="#spiritual-courses" class="text-white hover:text-orange-500 transition-colors text-2xl">Course</a>
                     </li>
                 </ul>
             </div>
@@ -344,7 +125,7 @@
         </div>
     </div>
 
-    <div class="page-container">
+    <div id="principles" class="page-container">
         <div class="container mx-auto px-4 py-16 overflow-hidden">
             <div class="text-center mb-16 relative">
                 <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -360,19 +141,222 @@
         </div>
     </div>
 
-    <section class="py-16 px-4 bg-brand-primary/50 overflow-hidden">
+    <section class="bg-pattern">
+        <div class="container mx-auto px-6 py-24">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Timeless Wisdom from the Gita</h1>
+                <p class="text-xl text-gray-200 max-w-2xl mx-auto">Discover profound insights and practical guidance from the ancient text of Bhagavad Gita</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Article 1 -->
+                <div class="article-card glass-effect rounded-xl shadow-xl overflow-hidden hover:shadow-2xl">
+                    <div class="relative">
+                        <img src="/src/Images/articles/article-2.jpg" alt="Gita wisdom" class="w-full h-72 object-cover"/>
+                        <div class="absolute top-0 right-0 bg-orange-500 text-white px-4 py-2 rounded-bl-lg">
+                            Featured
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Two Life Changing Secrets in the Gita</h2>
+                        <p class="text-gray-600 mb-6">The Bhagavad Gita contains profound wisdom that can transform our lives. In this article, we explore two of its most powerful secrets that can lead to personal growth and spiritual advancement...</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="https://img.freepik.com/free-photo/medium-shot-old-woman-celebrating-tamil-new-year_23-2151210743.jpg?uid=R75331262&ga=GA1.1.415415411.1725936376&semt=ais_hybrid" alt="Author" class="w-12 h-12 rounded-full border-2 border-orange-500"/>
+                                <div class="ml-4">
+                                    <p class="text-gray-800 font-medium">Chintamani</p>
+                                    <p class="text-gray-600 text-sm">Spiritual Guide</p>
+                                </div>
+                            </div>
+                            <a href="#" class="enroll-button bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors flex items-center group">
+                                Read More
+                                <i class="fas fa-arrow-right arrow ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="article-card glass-effect rounded-xl shadow-xl overflow-hidden hover:shadow-2xl">
+                    <div class="relative">
+                        <img src="/src/Images/articles/article-3.jpg" alt="Family discussions" class="w-full h-72 object-cover"/>
+                        <div class="absolute top-0 right-0 bg-orange-500 text-white px-4 py-2 rounded-bl-lg">
+                            New
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Overcoming Obstacles in Family Discussions</h2>
+                        <p class="text-gray-600 mb-6">Family discussions can be challenging, but the Gita provides timeless wisdom on maintaining harmony. Learn how to navigate difficult conversations with grace and understanding...</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="https://img.freepik.com/free-photo/elegant-old-man-sunny-autumn-park_1157-19090.jpg?uid=R75331262&ga=GA1.1.415415411.1725936376&semt=ais_hybrid" alt="Author" class="w-12 h-12 rounded-full border-2 border-orange-500"/>
+                                <div class="ml-4">
+                                    <p class="text-gray-800 font-medium">Krishna Dharma</p>
+                                    <p class="text-gray-600 text-sm">Family Counselor</p>
+                                </div>
+                            </div>
+                            <!-- <button onclick="viewArticle(2)" class="enroll-button bg-brand-primary text-white px-6 py-2 mt-4 w-fit rounded-lg hover:bg-brand-primary/50 transition-colors flex items-center hover:arrow-visible">
+                                Read More
+                                <i class="fas fa-arrow-right arrow ml-2"></i>
+                            </button> -->
+                            <a href="#" class="enroll-button bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors flex items-center group">
+                                Read More
+                                <i class="fas fa-arrow-right arrow ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <audio id="audioPlayer" class="hidden"></audio>
+    <section id="training" class="py-16 bg-gradient-to-br from-blue-50 to-purple-50 overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 relative"  data-aos="fade-up" data-aos-duration="1000">
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <i class="fas fa-dharmachakra mr-2 text-6xl text-brand-primary/20"></i>
+                </div>
+                <h2 class="text-5xl font-bold text-brand-primary mb-6">Krishna Temple Podcasts</h2>
+                <p class="text-xl text-brand-primary/80 max-w-2xl mx-auto">Dive deep into spiritual wisdom and teachings.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Featured Podcast -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden" data-aos="fade-right">
+                    <div class="relative">
+                        <img src="/src/Images/podcast/podcast1.jpg" alt="Krishna Teachings" class="w-full h-80 object-cover"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-primary/80 to-transparent">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <span class="text-sm font-semibold bg-blue-600 px-3 py-1 rounded-full">FEATURED</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">The Essence of Bhagavad Gita</h3>
+                        <p class="text-gray-600 mb-4">A deep dive into Chapter 1 with Swami Prabhupada's insights</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="src/Images/podcast/podcast-logo.jpg" alt="Speaker" class="w-10 h-10 rounded-full"/>
+                                <span class="ml-2 text-gray-700">Swami Prabhupada</span>
+                            </div>
+                            <span class="text-sm text-gray-500">45:30</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="mt-4">
+                                <button 
+                                    onclick="playPodcast('https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3', 'Bhagavad Gita Chapter 1')" 
+                                    class="flex items-center bg-brand-primary/40 text-white text-sm font-medium rounded-xl px-4 py-2 hover:bg-brand-primary focus:outline-none hover:text-white focus:ring-2 transition-colors">
+                                    <i class="fas fa-play-circle mr-2"></i>Watch Preview
+                                </button>
+                            </div>
+                            
+                            <a href="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" download 
+                                class="download-btn text-blue-600 hover:text-blue-800 p-2 rounded-full transition-all duration-300 hover:bg-blue-100">
+                                <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
+                            </a>
+                        </div>                        
+                    </div>
+                </div>
+            
+                <!-- Regular Episodes -->
+                <div class="space-y-10">
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300" data-aos="fade-left">
+                            <div class="flex items-center">
+                                <img src="/src/Images/podcast/podcast2.jpg" alt="Krishna Consciousness" class="w-40 h-32 rounded-lg object-cover"/>
+                                <div class="ml-4 flex-1">
+                                    <h3 class="font-bold text-lg mb-1">Understanding Krishna Consciousness</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Basic principles for beginners</p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="mt-4">
+                                            <button 
+                                            onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Krishna Consciousness Basics')" 
+                                                class="flex items-center bg-brand-primary/40 text-white text-sm font-medium rounded-xl px-4 py-2 hover:bg-brand-primary focus:outline-none hover:text-white focus:ring-2 transition-colors">
+                                                <i class="fas fa-play-circle mr-2"></i>Watch Preview
+                                            </button>
+                                        </div>
+                                        <span class="text-sm text-gray-500">30:15</span>
+                                        <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" download 
+                                            class="download-btn p-2 text-blue-600 hover:text-blue-800 rounded-full transition-all duration-300 hover:bg-blue-50">
+                                            <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300" data-aos="fade-left">
+                            <div class="flex items-center">
+                                <img src="src/Images/podcast/podcast3.jpg" alt="Krishna Consciousness" class="w-40 h-32 rounded-lg object-cover"/>
+                                <div class="ml-4 flex-1">
+                                    <h3 class="font-bold text-lg mb-1">Understanding Krishna Consciousness</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Basic principles for beginners</p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="mt-4">
+                                            <button 
+                                            onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Krishna Consciousness Basics')" 
+                                                class="flex items-center bg-brand-primary/40 text-white text-sm font-medium rounded-xl px-4 py-2 hover:bg-brand-primary focus:outline-none hover:text-white focus:ring-2 transition-colors">
+                                                <i class="fas fa-play-circle mr-2"></i>Watch Preview
+                                            </button>
+                                        </div>
+                                        <span class="text-sm text-gray-500">30:15</span>
+                                        <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" download 
+                                            class="download-btn p-2 text-blue-600 hover:text-blue-800 rounded-full transition-all duration-300 hover:bg-blue-50">
+                                            <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300" data-aos="fade-left">
+                            <div class="flex items-center">
+                                <img src="src/Images/podcast/podcast4.avif" alt="Krishna Consciousness" class="w-40 h-32 rounded-lg object-cover"/>
+                                <div class="ml-4 flex-1">
+                                    <h3 class="font-bold text-lg mb-1">Understanding Krishna Consciousness</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Basic principles for beginners</p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="mt-4">
+                                            <button 
+                                            onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Krishna Consciousness Basics')" 
+                                                class="flex items-center bg-brand-primary/40 text-white text-sm font-medium rounded-xl px-4 py-2 hover:bg-brand-primary focus:outline-none hover:text-white focus:ring-2 transition-colors">
+                                                <i class="fas fa-play-circle mr-2"></i>Watch Preview
+                                            </button>
+                                        </div>
+                                        <span class="text-sm text-gray-500">30:15</span>
+                                        <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" download 
+                                            class="download-btn p-2 text-blue-600 hover:text-blue-800 rounded-full transition-all duration-300 hover:bg-blue-50">
+                                            <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="podcast" class="py-16 px-4 bg-brand-primary/50 overflow-hidden">
         <div class="container mx-auto">
-            <div class="text-center mb-16 relative">
+            <div class="text-center mb-16 relative"  data-aos="fade-up" data-aos-duration="1000">
                 <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <i class="fas fa-dharmachakra mr-2 text-6xl text-brand-primary/20"></i>
                 </div>
                 <h2 class="text-5xl font-bold text-brand-primary mb-6">Sacred Temple Series</h2>
                 <p class="text-xl text-brand-primary/80 max-w-2xl mx-auto">Embark on a spiritual journey through our enlightening video series</p>
                 <div class="flex justify-center gap-4 mt-6">
-                    <span class="flex items-center text-gray-600">
+                    <span class="flex items-center text-brand-primary/80">
                         <i class="fas fa-video mr-2"></i> 10 Episodes
                     </span>
-                    <span class="flex items-center text-gray-600">
+                    <span class="flex items-center text-brand-primary/80">
                         <i class="fas fa-clock mr-2"></i> 5+ Hours
                     </span>
                 </div>
@@ -390,7 +374,7 @@
                             <button class="play-btn absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 rounded-full px-8 py-6" 
                                     data-video="https://player.vimeo.com/video/225434434?autoplay=1"
                                     data-title="Mindful Morning Routine">
-                                <i class="fas fa-play text-indigo-600 text-2xl"></i>
+                                <i class="fas fa-play text-brand-primary/50 text-2xl"></i>
                             </button>
                             <div class="text-white">
                                 <div class="flex items-center gap-4">
@@ -413,9 +397,12 @@
                             </span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Mindful Morning Routine</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Transform your mornings with ancient meditation techniques for modern life.</p>
-                        <div class="mt-4 flex items-center text-indigo-600 text-sm font-medium">
-                            <i class="fas fa-play-circle mr-2"></i>Watch Preview
+                        <p class="text-slate-600 text-sm leading-relaxed">Transform your mornings with ancient meditation techniques for life.</p>
+                        <div class="mt-4">
+                            <a href="#" class="enroll-button bg-brand-primary text-white px-6 py-2 mt-4 w-fit rounded-lg hover:bg-brand-primary/50 transition-colors flex items-center hover:arrow-visible">
+                                View More
+                                <i class="fas fa-arrow-right arrow ml-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -431,7 +418,7 @@
                             <button class="play-btn absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 rounded-full px-8 py-6" 
                                     data-video="https://player.vimeo.com/video/225434435?autoplay=1"
                                     data-title="Advanced Energy Practices">
-                                <i class="fas fa-play text-indigo-600 text-2xl"></i>
+                                <i class="fas fa-play text-brand-primary/50 text-2xl"></i>
                             </button>
                             <div class="text-white">
                                 <div class="flex items-center gap-4">
@@ -455,9 +442,10 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Advanced Energy Practices</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">Master advanced techniques for energy cultivation and spiritual growth.</p>
-                        <div class="mt-4 flex items-center text-indigo-600 text-sm font-medium">
-                            <i class="fas fa-play-circle mr-2"></i>Watch Preview
-                        </div>
+                        <a href="#" class="enroll-button bg-brand-primary text-white px-6 py-2 mt-4 w-fit rounded-lg hover:bg-brand-primary/50 transition-colors flex items-center hover:arrow-visible">
+                            View More
+                            <i class="fas fa-arrow-right arrow ml-2"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -472,7 +460,7 @@
                             <button class="play-btn absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 rounded-full px-8 py-6" 
                                     data-video="https://player.vimeo.com/video/225434435?autoplay=1"
                                     data-title="Advanced Energy Practices">
-                                <i class="fas fa-play text-indigo-600 text-2xl"></i>
+                                <i class="fas fa-play text-brand-primary/50 text-2xl"></i>
                             </button>
                             <div class="text-white">
                                 <div class="flex items-center gap-4">
@@ -496,152 +484,20 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Advanced Energy Practices</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">Master advanced techniques for energy cultivation and spiritual growth.</p>
-                        <div class="mt-4 flex items-center text-indigo-600 text-sm font-medium">
-                            <i class="fas fa-play-circle mr-2"></i>Watch Preview
-                        </div>
+                        <a href="#" class="enroll-button bg-brand-primary text-white px-6 py-2 mt-4 w-fit rounded-lg hover:bg-brand-primary/50 transition-colors flex items-center hover:arrow-visible">
+                            View More
+                            <i class="fas fa-arrow-right arrow ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="300">
-                <button id="loadMore" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-tertiary rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-indigo-300/30 hover:scale-105">
+                <a href="#" id="loadMore" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-tertiary rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-indigo-300/30 hover:scale-105">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Load More Lessons
                     <div class="absolute inset-0 bg-white/20 group-hover:translate-y-12 transition-transform duration-500"></div>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <audio id="audioPlayer" class="hidden"></audio>
-    <section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50 overflow-hidden">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 relative">
-                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <i class="fas fa-dharmachakra mr-2 text-6xl text-brand-primary/20"></i>
-                </div>
-                <h2 class="text-5xl font-bold text-brand-primary mb-6">Krishna Temple Podcasts</h2>
-                <p class="text-xl text-brand-primary/80 max-w-2xl mx-auto">Dive deep into spiritual wisdom and teachings</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Featured Podcast -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden" data-aos="fade-right">
-                    <div class="relative">
-                        <img src="/src/Images/podcast/podcast1.jpg" alt="Krishna Teachings" class="w-full h-64 object-cover"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-primary/80 to-transparent">
-                            <div class="absolute bottom-4 left-4 text-white">
-                                <span class="text-sm font-semibold bg-blue-600 px-3 py-1 rounded-full">FEATURED</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2">The Essence of Bhagavad Gita</h3>
-                        <p class="text-gray-600 mb-4">A deep dive into Chapter 1 with Swami Prabhupada's insights</p>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center">
-                                <img src="src/Images/podcast/podcast-logo.jpg" alt="Speaker" class="w-10 h-10 rounded-full"/>
-                                <span class="ml-2 text-gray-700">Swami Prabhupada</span>
-                            </div>
-                            <span class="text-sm text-gray-500">45:30</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div class="mt-4">
-                                <button 
-                                    onclick="playPodcast('https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3', 'Bhagavad Gita Chapter 1')" 
-                                    class="flex items-center text-indigo-600 text-sm font-medium hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                    <i class="fas fa-play-circle mr-2"></i>Watch Preview
-                                </button>
-                            </div>
-                            
-                            <a href="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" download 
-                                class="download-btn text-blue-600 hover:text-blue-800 p-2 rounded-full transition-all duration-300 hover:bg-blue-100">
-                                <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
-                            </a>
-                        </div>                        
-                    </div>
-                </div>
-            
-                <!-- Regular Episodes -->
-                <div class="space-y-10">
-                    <div class="space-y-6">
-                        <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300" data-aos="fade-left">
-                            <div class="flex items-center">
-                                <img src="/src/Images/podcast/podcast2.jpg" alt="Krishna Consciousness" class="w-24 h-24 rounded-lg object-cover"/>
-                                <div class="ml-4 flex-1">
-                                    <h3 class="font-bold text-lg mb-1">Understanding Krishna Consciousness</h3>
-                                    <p class="text-gray-600 text-sm mb-2">Basic principles for beginners</p>
-                                    <div class="flex items-center justify-between">
-                                        <div class="mt-4">
-                                            <button 
-                                            onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Krishna Consciousness Basics')" 
-                                                class="flex items-center text-indigo-600 text-sm font-medium hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                                <i class="fas fa-play-circle mr-2"></i>Watch Preview
-                                            </button>
-                                        </div>
-                                        <span class="text-sm text-gray-500">30:15</span>
-                                        <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" download 
-                                            class="download-btn p-2 text-blue-600 hover:text-blue-800 rounded-full transition-all duration-300 hover:bg-blue-50">
-                                            <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="space-y-6">
-                        <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300" data-aos="fade-left">
-                            <div class="flex items-center">
-                                <img src="src/Images/podcast/podcast3.jpg" alt="Krishna Consciousness" class="w-24 h-24 rounded-lg object-cover"/>
-                                <div class="ml-4 flex-1">
-                                    <h3 class="font-bold text-lg mb-1">Understanding Krishna Consciousness</h3>
-                                    <p class="text-gray-600 text-sm mb-2">Basic principles for beginners</p>
-                                    <div class="flex items-center justify-between">
-                                        <div class="mt-4">
-                                            <button 
-                                            onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Krishna Consciousness Basics')" 
-                                                class="flex items-center text-indigo-600 text-sm font-medium hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                                <i class="fas fa-play-circle mr-2"></i>Watch Preview
-                                            </button>
-                                        </div>
-                                        <span class="text-sm text-gray-500">30:15</span>
-                                        <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" download 
-                                            class="download-btn p-2 text-blue-600 hover:text-blue-800 rounded-full transition-all duration-300 hover:bg-blue-50">
-                                            <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300" data-aos="fade-left">
-                            <div class="flex items-center">
-                                <img src="src/Images/podcast/podcast4.avif" alt="Krishna Consciousness" class="w-24 h-24 rounded-lg object-cover"/>
-                                <div class="ml-4 flex-1">
-                                    <h3 class="font-bold text-lg mb-1">Understanding Krishna Consciousness</h3>
-                                    <p class="text-gray-600 text-sm mb-2">Basic principles for beginners</p>
-                                    <div class="flex items-center justify-between">
-                                        <div class="mt-4">
-                                            <button 
-                                            onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Krishna Consciousness Basics')" 
-                                                class="flex items-center text-indigo-600 text-sm font-medium hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                                <i class="fas fa-play-circle mr-2"></i>Watch Preview
-                                            </button>
-                                        </div>
-                                        <span class="text-sm text-gray-500">30:15</span>
-                                        <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" download 
-                                            class="download-btn p-2 text-blue-600 hover:text-blue-800 rounded-full transition-all duration-300 hover:bg-blue-50">
-                                            <i class="fas fa-download transform transition-transform duration-300 hover:scale-110"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -661,11 +517,16 @@
             <div id="gita-course" class="course-card bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
                 <div class="course-media relative">
                     <img src="src/Images/podcast/Bhagavad-Gita.avif" alt="Bhagavad Gita Course" class="course-thumbnail w-full h-48 object-cover">
-                    <button class="spiritual-play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <i class="fas fa-play text-yellow-600 text-xl"></i>
+                    
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-brand-primary/40"></div> 
+                    
+                    <button class="spiritual-play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full px-6 py-4 shadow-lg hover:scale-110 transition-transform" data-video="https://player.vimeo.com/video/225434434?autoplay=1">
+                        <i class="fas fa-play text-brand-primary text-xl"></i>
                     </button>
-                    <div class="course-icon absolute top-4 right-4 bg-white rounded-full p-2">
-                        <i class="fas fa-book text-yellow-600"></i>
+                    
+                    <div class="course-icon absolute top-4 right-4 bg-white rounded-full px-4 py-3">
+                        <i class="fas fa-book text-brand-primary"></i>
                     </div>
                 </div>
                 <div class="course-content p-6">
@@ -682,14 +543,14 @@
                         </span>
                     </div>
                     <div class="course-footer flex items-center justify-between">
-                        <span class="course-rating text-yellow-600 font-semibold flex items-center">
+                        <span class="course-rating text-brand-primary font-semibold flex items-center">
                             <i class="fas fa-star mr-2"></i>
                             4.9 Rating
                         </span>
-                        <button class="enroll-button bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition-colors flex items-center">
-                            <i class="fas fa-arrow-right mr-2"></i>
+                        <a href="#" class="enroll-button bg-brand-primary text-white px-6 py-2 rounded-lg hover:bg-brand-primary/50 transition-colors flex items-center hover:arrow-visible">
                             Begin Journey
-                        </button>
+                            <i class="fas fa-arrow-right arrow ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -697,12 +558,17 @@
             <!-- Meditation Course Card -->
             <div id="temple-course" class="course-card bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
                 <div class="course-media relative">
-                    <img src="src/Images/podcast/Sacred-Meditation & Mantras.avif" alt="Temple Worship Course" class="course-thumbnail w-full h-48 object-cover">
-                    <button class="spiritual-play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <i class="fas fa-play text-yellow-600 text-xl"></i>
+                    <img src="src/Images/podcast/Sacred-Meditation & Mantras.avif" alt="Bhagavad Gita Course" class="course-thumbnail w-full h-48 object-cover">
+                    
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-brand-primary/40"></div> 
+                    
+                    <button class="spiritual-play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full px-6 py-4 shadow-lg hover:scale-110 transition-transform" data-video="https://youtu.be/pnkFJ0NQrkM?si=gYmwauEBFdBRwXY4">
+                        <i class="fas fa-play text-brand-primary text-xl"></i>
                     </button>
-                    <div class="course-icon absolute top-4 right-4 bg-white rounded-full p-2">
-                        <i class="fas fa-meditation text-yellow-600"></i>
+                    
+                    <div class="course-icon absolute top-4 right-4 bg-white rounded-full px-4 py-3">
+                        <i class="fas fa-book text-brand-primary"></i>
                     </div>
                 </div>
                 <div class="course-content p-6">
@@ -719,14 +585,14 @@
                         </span>
                     </div>
                     <div class="course-footer flex items-center justify-between">
-                        <span class="course-rating text-yellow-600 font-semibold flex items-center">
+                        <span class="course-rating text-brand-primary font-semibold flex items-center">
                             <i class="fas fa-star mr-2"></i>
                             4.8 Rating
                         </span>
-                        <button class="enroll-button bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition-colors flex items-center">
-                            <i class="fas fa-arrow-right mr-2"></i>
+                        <a href="#" class="enroll-button bg-brand-primary text-white px-6 py-2 rounded-lg hover:bg-brand-primary/50 transition-colors flex items-center hover:arrow-visible">
                             Begin Journey
-                        </button>
+                            <i class="fas fa-arrow-right arrow ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -734,12 +600,17 @@
             <!-- Temple Worship Course Card -->
             <div id="temple-course" class="course-card bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
                 <div class="course-media relative">
-                    <img src="src/Images/podcast/Sacred-Temple-practices.jpg" alt="Temple Worship Course" class="course-thumbnail w-full h-48 object-cover">
-                    <button class="play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <i class="fas fa-play text-yellow-600 text-xl"></i>
+                    <img src="src/Images/podcast/Sacred-Temple-practices.jpg" alt="Bhagavad Gita Course" class="course-thumbnail w-full h-48 object-cover">
+                    
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-brand-primary/40"></div> 
+                    
+                    <button class="spiritual-play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full px-6 py-4 shadow-lg hover:scale-110 transition-transform" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <i class="fas fa-play text-brand-primary text-xl"></i>
                     </button>
-                    <div class="course-icon absolute top-4 right-4 bg-white rounded-full p-2">
-                        <i class="fas fa-temple text-yellow-600"></i>
+                    
+                    <div class="course-icon absolute top-4 right-4 bg-white rounded-full px-4 py-3">
+                        <i class="fas fa-gopuram text-brand-primary"></i>
                     </div>
                 </div>
                 <div class="course-content p-6">
@@ -756,26 +627,74 @@
                         </span>
                     </div>
                     <div class="course-footer flex items-center justify-between">
-                        <span class="course-rating text-yellow-600 font-semibold flex items-center">
+                        <span class="course-rating text-brand-primary font-semibold flex items-center">
                             <i class="fas fa-star mr-2"></i>
                             4.7 Rating
                         </span>
-                        <button class="enroll-button bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition-colors flex items-center">
-                            <i class="fas fa-arrow-right mr-2"></i>
+                        <a href="#" class="enroll-button bg-brand-primary text-white px-6 py-2 rounded-lg hover:bg-brand-primary/50 transition-colors flex items-center hover:arrow-visible">
                             Begin Journey
-                        </button>
+                            <i class="fas fa-arrow-right arrow ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="300">
+            <a href="your-target-url-here" id="loadMore" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-tertiary rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-indigo-300/30 hover:scale-105">
+                <i class="fas fa-plus-circle mr-2"></i>
+                Load More Courses
+                <div class="absolute inset-0 bg-white/20 group-hover:translate-y-12 transition-transform duration-500"></div>
+            </a>
+        </div>
     </section>
+
+    <section class="container mx-auto px-4 py-12">
+        <!-- Hero Section -->
+        <div class="text-center mb-16 relative"  data-aos="fade-up" data-aos-duration="1000">
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <i class="fas fa-book-reader mr-2 text-6xl text-brand-primary/20"></i>
+            </div>
+            <h2 class="text-5xl font-bold text-brand-primary mb-6">Sacred Wisdom</h2>
+            <p class="text-xl text-brand-primary/80 max-w-2xl mx-auto">Explore our curated collection of Bhagavad Gita editions and commentaries.</p>
+        </div>
+
+        <!-- Books Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="booksContainer" data-aos="fade-up" data-aos-delay="600">
+            
+        </div>
+
+        <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="300">
+            <a href="#" id="loadMore" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-tertiary rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-indigo-300/30 hover:scale-105">
+                <i class="fas fa-plus-circle mr-2"></i>
+                Load More Books
+                <div class="absolute inset-0 bg-white/20 group-hover:translate-y-12 transition-transform duration-500"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <div class="mt-16 custom-gradient p-12 text-center ">
+        <h3 class="text-4xl font-jost font-bold text-brand-secondary mb-4">Join Our Sacred Reading Circle</h3>
+        <p class="text-xl text-brand-secondary/90 mb-8">Receive daily verses and spiritual insights from the Bhagavad Gita</p>
+        <div class="flex max-w-md mx-auto gap-4">
+            <input 
+                type="email" 
+                placeholder="Enter your email" 
+                class="flex-1 px-6 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary text-tertiary"
+            />
+            <button class="bg-brand-secondary text-tertiary px-8 py-4 rounded-lg font-bold hover:bg-white transition-colors">
+                Subscribe
+            </button>
+        </div>
+    </div>
 
     <!-- footer -->
     <footer class="bg-primary text-white py-16 overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between items-start gap-12">
                 <!-- Logo and Contact Info -->
-                <div class="w-full md:w-auto flex-shrink-0">
+                <div class="w-full md:w-auto flex-shrink-0" data-aos="fade-up" data-aos-duration="600">
                     <a href="#" class="block mb-8">
                         <img class="h-16 w-auto" src="/src/Images/logo.png" alt="Logo" />
                     </a>
@@ -802,22 +721,22 @@
                 </div>
     
                 <!-- Quick Links -->
-                <div class="w-full md:w-auto">
+                <div class="w-full md:w-auto" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
                     <h2 class="text-2xl font-bold mb-6 relative pb-2">
                         Quick Links
                         <span class="absolute bottom-0 left-0 w-20 h-1 bg-brand-primary"></span>
                     </h2>
                     <ul class="grid grid-cols-1 gap-4">
-                        <li><a href="#" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Principles</a></li>
-                        <li><a href="#" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Podcast</a></li>
+                        <li><a href="#principles" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Principles</a></li>
+                        <li><a href="#podcast" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Podcast</a></li>
                         <li><a href="#" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Resources</a></li>
-                        <li><a href="#" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Training</a></li>
-                        <li><a href="#" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Course</a></li>
+                        <li><a href="#training" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Training</a></li>
+                        <li><a href="#spiritual-courses" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Course</a></li>
                     </ul>
                 </div>
     
                 <!-- Stay Updated -->
-                <div class="w-full md:w-80">
+                <div class="w-full md:w-80" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                     <h2 class="text-2xl font-bold mb-6 relative pb-2">
                         Stay Updated
                         <span class="absolute bottom-0 left-0 w-24 h-1 bg-brand-primary"></span>
@@ -831,7 +750,7 @@
                 </div>
     
                 <!-- Connect With Us -->
-                <div class="w-full md:w-auto">
+                <div class="w-full md:w-auto" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
                     <h2 class="text-2xl font-bold mb-6 relative pb-2">
                         Connect With Us
                         <span class="absolute bottom-0 left-0 w-28 h-1 bg-brand-primary"></span>
@@ -850,7 +769,7 @@
                 </div>
             </div>
         </div>
-        <div class="mt-12 pt-8 border-t border-white container mx-auto text-center text-lg text-secondary">
+        <div class="mt-12 pt-8 border-t border-white container mx-auto text-center text-lg text-secondary" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
             © 2025 Sastra. All rights reserved.
         </div>
     </footer>
@@ -962,5 +881,6 @@
     <script src="/src/js/podcast.js"></script>
     <script src="/src/js/principles.js"></script>
     <script src="/src/js/herovideo.js"></script>
+    <script src="/src/js/resources.js"></script>
 </body>
 </html>

@@ -1,0 +1,288 @@
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    font-family: 'Jost', serif;
+}
+
+.custom-shadow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.custom-gradient {
+    background: linear-gradient(135deg, #4c1204 0%, #b55206 100%);
+}
+
+.menu-open {
+    overflow: hidden;
+}
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: circle(0px at calc(100% - 45px) 45px);
+    transition: clip-path 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+    z-index: 40;
+}
+
+.nav-menu.active {
+    clip-path: circle(150% at calc(100% - 45px) 45px);
+    transition: clip-path 1s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+/* Ensure the navbar is always on top */
+.navbar-visible {
+    background-color: black;
+}
+
+/* Style for the menu items to fade in */
+.menu-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition-delay: 0.2s;
+}
+
+.nav-menu.active .menu-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add different delays for each menu item */
+.nav-menu.active .menu-item:nth-child(1) { transition-delay: 0.4s; }
+.nav-menu.active .menu-item:nth-child(2) { transition-delay: 0.5s; }
+.nav-menu.active .menu-item:nth-child(3) { transition-delay: 0.6s; }
+.nav-menu.active .menu-item:nth-child(4) { transition-delay: 0.7s; }
+.nav-menu.active .menu-item:nth-child(5) { transition-delay: 0.8s; }
+.nav-menu.active .menu-item:nth-child(6) { transition-delay: 0.9s; }
+
+.fixed {
+    position: fixed;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+.hero-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+}
+
+/* article */
+.article-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+.bg-pattern {
+    background-image: url('/src/Images/articles/article-1.jpg');
+    background-color: #b55206; 
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(181, 82, 6, 0.5); 
+    pointer-events: none;
+}
+
+.article-card {
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-10px);
+}
+
+.arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.enroll-button:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* training */
+.video-modal {
+    display: none;
+    animation: modalFade 0.3s ease-out;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.card-overlay {
+    background: rgba(30, 41, 59, 0.7);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.hover-effect:hover .card-overlay {
+    opacity: 1;
+}
+
+.hover-effect:hover img {
+    transform: scale(1.05);
+}
+
+.hover-gradient:hover .card-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+}
+
+@keyframes modalFade {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.play-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+.category-badge {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+/* button */
+.arrow {
+    opacity: 0; 
+    transform: translateX(-10px); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+}
+.hover\:arrow-visible:hover .arrow {
+    opacity: 1; 
+    transform: translateX(0);
+}
+
+/* principles */
+.card-hover-effect {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover-effect:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.number-circle {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-effect:hover .title-text {
+    color: #1d4ed8;
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.principle-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color, #f3e7d7);
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    z-index: 50;
+}
+
+.principle-page.active {
+    transform: translateX(0);
+}
+
+.page-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.3s;
+}
+
+.principle-page.active .page-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.back-btn {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 60;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+.principle-page.active .back-btn {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.6s;
+}
+
+.view-more-btn {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover-effect:hover .view-more-btn {
+    opacity: 1;
+    transform: translateX(0);
+}
+.arrow-icon {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.view-more-btn:hover .arrow-icon {
+    transform: translateX(8px);
+}
