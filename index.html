@@ -14,20 +14,82 @@
     <link rel="stylesheet" href="/src/css/style.css">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-brand-primary overflow-hidden">
+        <!-- Chakra with Ring Progress -->
+        <div class="relative mb-8">
+            <svg class="chakra w-40 h-40" viewBox="0 0 100 100">
+                <!-- Decorative Outer Circles -->
+                <circle cx="50" cy="50" r="48" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                
+                <!-- Main Chakra Design -->
+                <g fill="white">
+                    <path d="M50 5 L54 20 L46 20 Z" />
+                    <path d="M95 50 L80 54 L80 46 Z" />
+                    <path d="M50 95 L46 80 L54 80 Z" />
+                    <path d="M5 50 L20 46 L20 54 Z" />
+                    <path d="M82 18 L75 32 L68 25 Z" />
+                    <path d="M82 82 L68 75 L75 68 Z" />
+                    <path d="M18 82 L25 68 L32 75 Z" />
+                    <path d="M18 18 L32 25 L25 32 Z" />
+                </g>
+                
+                <!-- Center Elements -->
+                <circle cx="50" cy="50" r="6" fill="white"/>
+                <circle cx="50" cy="50" r="3" fill="#b55206"/>
+            </svg>
+            
+            <!-- Progress Ring -->
+            <svg class="progress-ring absolute top-0 left-0 w-40 h-40" viewBox="0 0 100 100">
+                <circle 
+                    id="progress-circle" 
+                    cx="50" 
+                    cy="50" 
+                    r="46" 
+                    fill="none" 
+                    stroke="white" 
+                    stroke-width="2"
+                    stroke-linecap="round" 
+                    stroke-dasharray="289.027"
+                    stroke-dashoffset="289.027"
+                />
+            </svg>
+        </div>
+    
+        <!-- Sanskrit Text -->
+        <div class="sanskrit-text text-white text-4xl mb-8">
+            ॐ नमः शिवाय
+        </div>
+    
+        <!-- Loading Text -->
+        <div id="loading-text" class="text-white text-xl font-semibold tracking-wider">
+            Loading... 0%
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="fixed w-full z-50 transition-all duration-300 overflow-hidden" id="navbar">
         <div class="container flex flex-wrap items-center justify-between mx-auto pt-8 pb-6">
             <a href="#" class="flex items-center space-x-3 z-50" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
                 <img src="/src/Images/logo-1/white-logo.svg" alt="Logo">
             </a>
-            
-            <!-- Hamburger Button -->
-            <button id="hamburger" class="hamburger z-50 xl:hidden flex justify-center items-center w-10 h-10" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
-                <i class="fas fa-bars text-white"></i>
-            </button>
+
+            <div class="xl:hidden flex items-center space-x-4">
+                <button id="krishnaMobileAudioControl" class="krishna-audio-btn flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 shadow-lg" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+                    <i id="krishnaMobilePlayIcon" class="fas fa-play w-5 h-5 text-white"></i>
+                    <i id="krishnaMobilePauseIcon" class="fas fa-pause w-5 h-5 text-white hidden"></i>
+                </button>
+
+                <!-- Hamburger Button -->
+                <button id="hamburger" class="hamburger z-50 xl:hidden flex justify-center items-center w-10 h-10" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+                    <i class="fas fa-bars text-white text-3xl"></i>
+                </button>
+            </div>
 
             <!-- Mobile Menu -->
-            <div id="nav-menu" class="nav-menu fixed inset-0 bg-black/95 xl:hidden -translate-x-full transition-transform duration-300">
+            <div id="nav-menu" class="nav-menu fixed inset-0 bg-black/95 xl:hidden opacity-0 invisible transition-all duration-300">
                 <div class="container mx-auto px-4 h-full flex items-center">
                     <ul class="flex flex-col items-center space-y-12 w-full">
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="100">
@@ -36,14 +98,14 @@
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="200">
                             <a href="#podcast" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Podcast</a>
                         </li>
-                        <li class="menu-item" data-aos="fade-up" data-aos-delay="300">
-                            <a href="#" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Resources</a>
-                        </li>
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="400">
                             <a href="#training" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Training</a>
                         </li>
                         <li class="menu-item" data-aos="fade-up" data-aos-delay="500">
                             <a href="#spiritual-courses" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Course</a>
+                        </li>
+                        <li class="menu-item" data-aos="fade-up" data-aos-delay="300"></li>
+                            <a href="#resources" class="text-3xl font-bold text-white hover:text-orange-500 transition-colors">Resources</a>
                         </li>
                     </ul>
                 </div>
@@ -58,19 +120,30 @@
                     <li data-aos="fade-down" data-aos-delay="200">
                         <a href="#podcast" class="text-white hover:text-orange-500 transition-colors text-2xl">Podcast</a>
                     </li>
-                    <li data-aos="fade-down" data-aos-delay="300">
-                        <a href="#" class="text-white hover:text-orange-500 transition-colors text-2xl">Resources</a>
-                    </li>
                     <li data-aos="fade-down" data-aos-delay="400">
                         <a href="#training" class="text-white hover:text-orange-500 transition-colors text-2xl">Training</a>
                     </li>
                     <li data-aos="fade-down" data-aos-delay="500">
                         <a href="#spiritual-courses" class="text-white hover:text-orange-500 transition-colors text-2xl">Course</a>
                     </li>
+                    <li data-aos="fade-down" data-aos-delay="300">
+                        <a href="#resources" class="text-white hover:text-orange-500 transition-colors text-2xl">Resources</a>
+                    </li>
+                    <li data-aos="fade-down" data-aos-delay="600">
+                        <button id="krishnaAudioControl" class="krishna-audio-btn flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 shadow-lg">
+                            <i id="krishnaMobilePlayIcon" class="fas fa-play w-5 h-5 text-white"></i>
+                            <i id="krishnaMobilePauseIcon" class="fas fa-pause w-5 h-5 text-white hidden"></i>
+                            <span class="krishna-skip-tooltip">Play Audio</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <audio id="krishnaSloganAudio" preload="auto">
+        <source src="/src/Images/audio/krishnar-flute.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Hero Section -->
     <div class="hero-main-container relative h-screen w-full overflow-hidden">
@@ -125,7 +198,7 @@
         </div>
     </div>
 
-    <div id="principles" class="page-container">
+    <div id="principles" class="page-container overflow-hidden">
         <div class="container mx-auto px-4 py-16 overflow-hidden">
             <div class="text-center mb-16 relative">
                 <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -148,9 +221,8 @@
         </div>
         
     </div>
-    
 
-    <section class="bg-pattern">
+    <section class="bg-pattern overflow-hidden">
         <div class="container mx-auto px-6 py-24">
             <!-- Section Header -->
             <div class="text-center mb-16">
@@ -666,7 +738,7 @@
         </div>
     </section>
 
-    <section class="container mx-auto px-4 py-12">
+    <section id="resources" class="container mx-auto px-4 py-12 overflow-hidden">
         <!-- Hero Section -->
         <div class="text-center mb-16 relative"  data-aos="fade-up" data-aos-duration="1000">
             <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -691,7 +763,7 @@
     </section>
 
     <!-- Newsletter Section -->
-    <div class="mt-16 custom-gradient p-12 text-center ">
+    <div class="mt-16 custom-gradient p-12 text-center overflow-hidden">
         <h3 class="text-4xl font-jost font-bold text-brand-secondary mb-4">Join Our Sacred Reading Circle</h3>
         <p class="text-xl text-brand-secondary/90 mb-8">Receive daily verses and spiritual insights from the Bhagavad Gita</p>
         <div class="flex max-w-md mx-auto gap-4">
@@ -746,7 +818,7 @@
                     <ul class="grid grid-cols-1 gap-4">
                         <li><a href="#principles" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Principles</a></li>
                         <li><a href="#podcast" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Podcast</a></li>
-                        <li><a href="#" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Resources</a></li>
+                        <li><a href="#resources" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Resources</a></li>
                         <li><a href="#training" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Training</a></li>
                         <li><a href="#spiritual-courses" class="hover:text-brand-primary/80 transition cursor-pointer duration-300 flex items-center"><span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>Course</a></li>
                     </ul>
@@ -899,5 +971,7 @@
     <script src="/src/js/principles.js"></script>
     <script src="/src/js/herovideo.js"></script>
     <script src="/src/js/resources.js"></script>
+    <script src="/src/js/preloader.js"></script>
+    <script src="/src/js/audioplay.js"></script>
 </body>
 </html>
